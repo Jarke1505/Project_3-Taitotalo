@@ -5,6 +5,213 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Menu — Amber & Thyme</title>
   <link rel="stylesheet" href="restaurant.css" />
+    <style>
+    /* General */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #fafafa;
+      color: #333;
+    }
+
+    /* Header */
+    .site-header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 1rem 0;
+    }
+    .site-header .brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+    .nav-links a[aria-current="page"] {
+      text-decoration: underline;
+    }
+
+    /* Section titles */
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .lead {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Alternate section background */
+    section.alt {
+      background-color: #f5f5f5;
+      padding: 2rem 0;
+    }
+
+    /* Menu grid */
+    .menu-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .menu-item {
+      background: white;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .menu-thumb {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .menu-item-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    .menu-item-price {
+      font-weight: bold;
+      color: #16a34a;
+      margin-bottom: 0.5rem;
+    }
+    .menu-item-desc {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+    .menu-item-actions .btn {
+      background-color: #2c3e50;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .menu-item-actions .btn:hover {
+      background-color: #1a252f;
+    }
+
+    /* Footer */
+    .site-footer {
+      background-color: #2c3e50;
+      color: white;
+      padding: 2rem 0;
+      margin-top: 2rem;
+    }
+    .site-footer .footer-heading {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .site-footer .muted {
+      color: #ccc;
+    }
+    .site-footer .social img {
+      width: 24px;
+      margin-right: 0.5rem;
+    }
+    .site-footer .copyright {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    /* Cart UI */
+    .cart-toggle {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background-color: #16a34a;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .badge {
+      background-color: red;
+      color: white;
+      font-size: 0.75rem;
+      padding: 2px 5px;
+      border-radius: 50%;
+      position: absolute;
+      top: -5px;
+      right: -5px;
+    }
+
+    /* Modal / Checkout */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 50;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      width: 90%;
+      max-width: 500px;
+      z-index: 100;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .modal header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .field {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .field input {
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    .checkout-btn, #pay-button {
+      width: 100%;
+      padding: 0.75rem;
+      font-weight: bold;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+    .checkout-btn {
+      background-color: #2c3e50;
+      color: white;
+    }
+    .checkout-btn:hover, #pay-button:hover {
+      opacity: 0.9;
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
