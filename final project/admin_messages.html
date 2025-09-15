@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Messages - Amber & Thyme Admin</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #d4af37;
+        }
+        .header h1 {
+            color: #d4af37;
+            margin: 0;
+        }
+        .status {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .status.connected {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.disconnected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .message {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #d4af37;
+        }
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .message-id {
+            background: #d4af37;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .message-date {
+            color: #666;
+            font-size: 14px;
+        }
+        .message-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .message-email {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .message-content {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+            line-height: 1.5;
+        }
+        .no-messages {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 40px;
+        }
+        .refresh-btn {
+            background: #d4af37;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .refresh-btn:hover {
+            background: #b8941f;
+        }
+        .api-info {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .api-info h3 {
+            margin-top: 0;
+            color: #0c5460;
+        }
+        .api-endpoint {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 3px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📧 Contact Messages - Admin Panel</h1>
+            <p>Amber & Thyme Restaurant</p>
+        </div>
+
+        <div class="status" id="status">
+            🔄 Checking backend connection...
+        </div>
+
+        <button class="refresh-btn" onclick="loadMessages()">🔄 Refresh Messages</button>
+
+        <div class="api-info">
+            <h3>📋 How to Check Messages</h3>
+            <p><strong>Backend Console:</strong> Check the backend server window for real-time message logs</p>
+            <p><strong>API Endpoint:</strong></p>
+            <div class="api-endpoint">GET http://localhost:4000/api/contact</div>
+            <p><strong>Message Storage:</strong> All messages are stored in the backend's contactMessages array</p>
+        </div>
+
+        <div id="messages-container">
+            <div class="no-messages">Loading messages...</div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:4000/api';
+
+        async function checkBackend() {
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        async function loadMessages() {
+            const statusEl = document.getElementById('status');
+            const container = document.getElementById('messages-container');
+
+            try {
+                const isConnected = await checkBackend();
+                
+                if (!isConnected) {
+                    statusEl.textContent = '❌ Backend not available - cannot load messages';
+                    statusEl.className = 'status disconnected';
+                    container.innerHTML = '<div class="no-messages">Backend server is not running. Please start the backend to view messages.</div>';
+                    return;
+                }
+
+                statusEl.textContent = '✅ Backend connected - loading messages...';
+                statusEl.className = 'status connected';
+
+                const response = await fetch(`${API_BASE}/contact`);
+                const data = await response.json();
+
+                if (data.messages && data.messages.length > 0) {
+                    container.innerHTML = '';
+                    data.messages.forEach(message => {
+                        const messageEl = document.createElement('div');
+                        messageEl.className = 'message';
+                        messageEl.innerHTML = `
+                            <div class="message-header">
+                                <span class="message-id">#${message.id}</span>
+                                <span class="message-date">${new Date(message.createdAt).toLocaleString()}</span>
+                            </div>
+                            <div class="message-name">${message.name}</div>
+                            <div class="message-email">${message.email}</div>
+                            <div class="message-content">${message.message}</div>
+                        `;
+                        container.appendChild(messageEl);
+                    });
+                    statusEl.textContent = `✅ Loaded ${data.messages.length} message(s)`;
+                } else {
+                    container.innerHTML = '<div class="no-messages">No messages yet. Messages will appear here when customers contact you.</div>';
+                    statusEl.textContent = '✅ Backend connected - no messages yet';
+                }
+            } catch (error) {
+                console.error('Error loading messages:', error);
+                statusEl.textContent = '❌ Error loading messages: ' + error.message;
+                statusEl.className = 'status disconnected';
+                container.innerHTML = '<div class="no-messages">Error loading messages. Please check the backend connection.</div>';
+            }
+        }
+
+        // Load messages on page load
+        loadMessages();
+
+        // Auto-refresh every 30 seconds
+        setInterval(loadMessages, 30000);
+    </script>
+</body>
+</html>

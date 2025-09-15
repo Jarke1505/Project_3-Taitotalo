@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu — Amber & Thyme</title>
+  <link rel="stylesheet" href="restaurant.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand"><span class="dot"></span> Amber &amp; Thyme</div>
+      <nav>
+        <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        <div id="nav-links" class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="menu_with_backend.html" aria-current="page">Menu</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="alt">
+    <div class="container">
+      <h1 class="section-title">Our Menu</h1>
+      <p class="lead">Seasonal dishes made with local ingredients. Prices in EUR.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="menu-section">
+        <h2 class="section-title">Starters</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🍅</div>
+            <div class="menu-item-title">Tomato Soup</div>
+            <div class="menu-item-price">€6</div>
+            <p class="menu-item-desc">Roasted tomatoes, basil oil, grilled sourdough.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="starter-tomato-soup" data-name="Tomato Soup" data-price="6">Add to Cart</button></div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🥗</div>
+            <div class="menu-item-title">Green Salad</div>
+            <div class="menu-item-price">€7</div>
+            <p class="menu-item-desc">Crisp greens, shaved vegetables, lemon vinaigrette.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="starter-green-salad" data-name="Green Salad" data-price="7">Add to Cart</button></div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🍞</div>
+            <div class="menu-item-title">Garlic Bread</div>
+            <div class="menu-item-price">€5</div>
+            <p class="menu-item-desc">Warm sourdough, garlic butter, herbs.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="starter-garlic-bread" data-name="Garlic Bread" data-price="5">Add to Cart</button></div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🧀</div>
+            <div class="menu-item-title">Burrata</div>
+            <div class="menu-item-price">€9</div>
+            <p class="menu-item-desc">Creamy burrata, cherry tomatoes, basil pesto.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="starter-burrata" data-name="Burrata" data-price="9">Add to Cart</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-section">
+        <h2 class="section-title">Mains</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🍗</div>
+            <div class="menu-item-title">Roast Chicken</div>
+            <div class="menu-item-price">€16</div>
+            <p class="menu-item-desc">Herb butter, pan jus, roasted potatoes.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="main-roast-chicken" data-name="Roast Chicken" data-price="16">Add to Cart</button></div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🐟</div>
+            <div class="menu-item-title">Grilled Salmon</div>
+            <div class="menu-item-price">€18</div>
+            <p class="menu-item-desc">Charred lemon, dill yogurt, seasonal vegetables.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="main-grilled-salmon" data-name="Grilled Salmon" data-price="18">Add to Cart</button></div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🍄</div>
+            <div class="menu-item-title">Mushroom Risotto</div>
+            <div class="menu-item-price">€15</div>
+            <p class="menu-item-desc">Wild mushrooms, parmesan, thyme, truffle oil.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="main-mushroom-risotto" data-name="Mushroom Risotto" data-price="15">Add to Cart</button></div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🥩</div>
+            <div class="menu-item-title">Steak Frites</div>
+            <div class="menu-item-price">€22</div>
+            <p class="menu-item-desc">Grilled sirloin, herb butter, crispy fries.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="main-steak-frites" data-name="Steak Frites" data-price="22">Add to Cart</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-section">
+        <h2 class="section-title">Desserts</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🍫</div>
+            <div class="menu-item-title">Chocolate Tart</div>
+            <div class="menu-item-price">€7</div>
+            <p class="menu-item-desc">Dark chocolate ganache, sea salt, vanilla cream.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="dessert-chocolate-tart" data-name="Chocolate Tart" data-price="7">Add to Cart</button></div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🍋</div>
+            <div class="menu-item-title">Lemon Posset</div>
+            <div class="menu-item-price">€6</div>
+            <p class="menu-item-desc">Silky lemon cream, almond crumble.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="dessert-lemon-posset" data-name="Lemon Posset" data-price="6">Add to Cart</button></div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🍮</div>
+            <div class="menu-item-title">Panna Cotta</div>
+            <div class="menu-item-price">€6.5</div>
+            <p class="menu-item-desc">Vanilla panna cotta, berry compote.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="dessert-panna-cotta" data-name="Panna Cotta" data-price="6.5">Add to Cart</button></div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🍎</div>
+            <div class="menu-item-title">Apple Crumble</div>
+            <div class="menu-item-price">€6.5</div>
+            <p class="menu-item-desc">Warm apples, oat crumble, cinnamon custard.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="dessert-apple-crumble" data-name="Apple Crumble" data-price="6.5">Add to Cart</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-section">
+        <h2 class="section-title">Drinks</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🥤</div>
+            <div class="menu-item-title">House Lemonade</div>
+            <div class="menu-item-price">€3.5</div>
+            <p class="menu-item-desc">Fresh lemon, mint, sparkling water.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="drink-lemonade" data-name="House Lemonade" data-price="3.5">Add to Cart</button></div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">☕</div>
+            <div class="menu-item-title">Filter Coffee</div>
+            <div class="menu-item-price">€3</div>
+            <p class="menu-item-desc">Locally roasted beans.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="drink-coffee" data-name="Filter Coffee" data-price="3">Add to Cart</button></div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🧋</div>
+            <div class="menu-item-title">Iced Tea</div>
+            <div class="menu-item-price">€3.5</div>
+            <p class="menu-item-desc">Brewed black tea, lemon, light sweetness.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="drink-iced-tea" data-name="Iced Tea" data-price="3.5">Add to Cart</button></div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-thumb" aria-hidden="true">🍷</div>
+            <div class="menu-item-title">House Red Wine</div>
+            <div class="menu-item-price">€6 / glass</div>
+            <p class="menu-item-desc">Smooth, medium‑bodied, berry notes.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="drink-red-wine" data-name="House Red Wine" data-price="6">Add to Cart</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-heading">Hours</div>
+        <div class="muted">Mon–Thu 11–21<br/>Fri–Sat 11–23<br/>Sun 12–20</div>
+      </div>
+      <div>
+        <div class="footer-heading">Find Us</div>
+        <div class="muted">123 Market Street<br/>Helsinki, Finland</div>
+      </div>
+      <div>
+        <div class="footer-heading">Follow</div>
+        <div class="social">
+          <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="images/instagram.svg" alt="" /></a>
+          <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><img src="images/facebook.svg" alt="" /></a>
+          <a href="https://twitter.com" aria-label="X" target="_blank" rel="noopener noreferrer"><img src="images/x.svg" alt="" /></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">© <span id="year"></span> Amber &amp; Thyme</div>
+  </footer>
+
+  <!-- Cart UI -->
+  <button class="cart-toggle" id="cart-toggle" aria-label="Open cart">🛒 <span class="badge" id="cart-count">0</span></button>
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-sidebar" id="cart-sidebar" aria-label="Shopping cart">
+    <div class="cart-header">Your Order</div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-row"><span>Subtotal</span><strong id="cart-subtotal">€0.00</strong></div>
+      <button class="checkout-btn" id="checkout-btn">Checkout</button>
+    </div>
+  </aside>
+
+  <!-- Checkout Modal -->
+  <div class="modal-backdrop" id="modal-backdrop"></div>
+  <section class="modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+    <header>
+      <div id="checkout-title">Checkout</div>
+      <button class="close-btn" id="modal-close" aria-label="Close">Close</button>
+    </header>
+    <div class="modal-body">
+      <form id="checkout-form" class="grid" style="gap:0.5rem;">
+        <div class="field">
+          <label for="cust-name">Name</label>
+          <input id="cust-name" type="text" required />
+        </div>
+        <div class="field">
+          <label for="cust-address">Delivery Address</label>
+          <input id="cust-address" type="text" required />
+        </div>
+        <div class="field">
+          <label for="cust-phone">Phone Number</label>
+          <input id="cust-phone" type="text" required />
+        </div>
+        <div class="field">
+          <label for="cust-email">Email</label>
+          <input id="cust-email" type="email" required />
+        </div>
+        <div class="field">
+          <label>Payment Method</label>
+          <div class="pay-grid" id="pay-methods">
+            <label class="pay-option"><input type="radio" name="pay" value="Cash" checked /><img src="images/cash.svg" alt="Cash" />Cash</label>
+            <label class="pay-option"><input type="radio" name="pay" value="Visa" /><img src="images/visa.svg" alt="Visa" />Visa</label>
+            <label class="pay-option"><input type="radio" name="pay" value="MasterCard" /><img src="images/mastercard.svg" alt="MasterCard" />MasterCard</label>
+            <label class="pay-option"><input type="radio" name="pay" value="Amex" /><img src="images/amex.svg" alt="American Express" />Amex</label>
+            <label class="pay-option"><input type="radio" name="pay" value="PayPal" /><img src="images/paypal.svg" alt="PayPal" />PayPal</label>
+            <label class="pay-option"><input type="radio" name="pay" value="Apple Pay" /><img src="images/applepay.svg" alt="Apple Pay" />Apple Pay</label>
+            <label class="pay-option"><input type="radio" name="pay" value="Google Pay" /><img src="images/gpay.svg" alt="Google Pay" />Google Pay</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Next steps</label>
+          <div id="pay-details" class="pay-details">
+            <div id="pay-help"></div>
+            <div id="card-fields" style="display:none;" class="grid" style="gap:0.5rem;">
+              <div class="field">
+                <label for="card-number">Card Number</label>
+                <input id="card-number" type="text" placeholder="1234 5678 9012 3456" />
+              </div>
+              <div class="grid-2">
+                <div class="field">
+                  <label for="card-exp">Expiry</label>
+                  <input id="card-exp" type="text" placeholder="MM/YY" />
+                </div>
+                <div class="field">
+                  <label for="card-cvc">CVC</label>
+                  <input id="card-cvc" type="text" placeholder="123" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div id="order-message" class="muted" style="display:none;">Thank you for your order!</div>
+    </div>
+    <footer>
+      <button class="place-order" id="place-order">Place Order</button>
+    </footer>
+  </section>
+
+  <script defer src="restaurant.js"></script>
+  <script defer src="order_with_backend.js"></script>
+</body>
+</html>

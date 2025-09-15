@@ -1,0 +1,35 @@
+{
+  "name": "amber-thyme-restaurant",
+  "version": "1.0.0",
+  "description": "A beautiful restaurant website with online ordering system and admin dashboard",
+  "main": "simple_backend.js",
+  "scripts": {
+    "start": "node simple_backend.js",
+    "dev": "node simple_backend.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "restaurant",
+    "website",
+    "ordering",
+    "admin",
+    "dashboard",
+    "nodejs",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Amber & Thyme Restaurant",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/amber-thyme-restaurant.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/amber-thyme-restaurant/issues"
+  },
+  "homepage": "https://yourusername.github.io/amber-thyme-restaurant"
+}
