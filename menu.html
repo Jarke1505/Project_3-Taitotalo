@@ -4,52 +4,43 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Menu — Amber & Thyme</title>
-    <style>
-    /* General */
+
+  <style>
+    /* ---------- Base ---------- */
+    :root { --ink:#333; --paper:#fafafa; --brand:#2c3e50; --muted:#555; --accent:#16a34a; --gold:#d4af37; }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
-      background-color: #fafafa;
-      color: #333;
+      background-color: var(--paper);
+      color: var(--ink);
     }
+    a { color: inherit; text-decoration: none; }
+    a:hover, a:focus { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
-    /* Header */
-    .site-header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 1rem 0;
-    }
-    .site-header .brand {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      margin-left: 1rem;
-    }
-    .nav-links a[aria-current="page"] {
-      text-decoration: underline;
-    }
+    /* ---------- Layout helpers ---------- */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
 
-    /* Section titles */
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    .lead {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
+    /* ---------- Header ---------- */
+    .site-header { background-color: var(--brand); color: white; padding: 1rem 0; }
+    .brand { font-size: 1.5rem; font-weight: bold; display: flex; align-items: center; gap: .5rem; }
+    .dot { width: .8rem; height: .8rem; border-radius: 50%; background: var(--gold); display: inline-block; }
+    .nav-links { display: flex; align-items: center; gap: 1rem; }
+    .nav-links a { color: white; }
+    .nav-links a[aria-current="page"] { text-decoration: underline; font-weight: 600; }
+    .nav-toggle { display: none; } /* hidden (no JS toggle) */
 
-    /* Alternate section background */
-    section.alt {
-      background-color: #f5f5f5;
-      padding: 2rem 0;
-    }
+    /* ---------- Sections ---------- */
+    .section-title { font-size: 2rem; margin: 0 0 .5rem; }
+    .lead { font-size: 1.2rem; margin: 0 0 1.5rem; color: var(--muted); }
+    section.alt { background-color: #f5f5f5; padding: 2rem 0; }
+    section { padding: 2rem 0; }
 
-    /* Menu grid */
+    /* ---------- Menu ---------- */
     .menu-grid {
       display: grid;
       gap: 1rem;
@@ -60,163 +51,53 @@
       border-radius: 0.5rem;
       padding: 1rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      display: flex; flex-direction: column; justify-content: space-between;
     }
-    .menu-thumb {
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
-    .menu-item-title {
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin-bottom: 0.25rem;
-    }
-    .menu-item-price {
-      font-weight: bold;
-      color: #16a34a;
-      margin-bottom: 0.5rem;
-    }
-    .menu-item-desc {
-      font-size: 0.95rem;
-      margin-bottom: 0.5rem;
-      color: #555;
-    }
+    .menu-thumb { font-size: 2.5rem; text-align: center; margin-bottom: .5rem; }
+    .menu-item-title { font-weight: bold; font-size: 1.1rem; margin-bottom: .25rem; }
+    .menu-item-price { font-weight: bold; color: var(--accent); margin-bottom: .5rem; }
+    .menu-item-desc { font-size: .95rem; margin-bottom: .5rem; color: var(--muted); }
     .menu-item-actions .btn {
-      background-color: #2c3e50;
-      color: white;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.95rem;
+      background-color: var(--brand); color: white;
+      padding: .5rem 1rem; border: none; border-radius: 4px; cursor: pointer; font-size: .95rem;
     }
-    .menu-item-actions .btn:hover {
-      background-color: #1a252f;
-    }
+    .menu-item-actions .btn:hover { filter: brightness(1.05); }
 
-    /* Footer */
-    .site-footer {
-      background-color: #2c3e50;
-      color: white;
-      padding: 2rem 0;
-      margin-top: 2rem;
-    }
-    .site-footer .footer-heading {
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-    .site-footer .muted {
-      color: #ccc;
-    }
-    .site-footer .social img {
-      width: 24px;
-      margin-right: 0.5rem;
-    }
-    .site-footer .copyright {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #ccc;
-    }
+    /* ---------- Footer ---------- */
+    .site-footer { background-color: var(--brand); color: white; padding: 2rem 0; margin-top: 2rem; }
+    .footer-heading { font-weight: bold; margin-bottom: .5rem; }
+    .muted { color: #ddd; }
+    .social img { width: 24px; height: 24px; margin-right: .5rem; }
+    .copyright { text-align: center; margin-top: 1rem; font-size: .9rem; color: #ddd; }
 
-    /* Cart UI */
+    /* ---------- Minimal count badge (floating) ---------- */
     .cart-toggle {
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-      background-color: #16a34a;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: fixed; right: 1rem; bottom: 1rem;
+      background-color: var(--accent); color: #fff;
+      border: none; border-radius: 50%;
+      width: 50px; height: 50px; font-size: 1.5rem; cursor: default;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,.15);
     }
     .badge {
-      background-color: red;
-      color: white;
-      font-size: 0.75rem;
-      padding: 2px 5px;
-      border-radius: 50%;
-      position: absolute;
-      top: -5px;
-      right: -5px;
+      position: absolute; top: -6px; right: -6px;
+      background-color: red; color: #fff; font-size: .75rem;
+      padding: 2px 6px; border-radius: 999px; min-width: 20px; text-align: center;
     }
 
-    /* Modal / Checkout */
-    .modal-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 50;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      padding: 2rem;
-      border-radius: 0.5rem;
-      width: 90%;
-      max-width: 500px;
-      z-index: 100;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-    .modal header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-    .close-btn {
-      background: none;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .field {
-      margin-bottom: 1rem;
-      display: flex;
-      flex-direction: column;
-    }
-    .field input {
-      padding: 0.5rem;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-    .checkout-btn, #pay-button {
-      width: 100%;
-      padding: 0.75rem;
-      font-weight: bold;
-      border-radius: 4px;
-      border: none;
-      cursor: pointer;
-    }
-    .checkout-btn {
-      background-color: #2c3e50;
-      color: white;
-    }
-    .checkout-btn:hover, #pay-button:hover {
-      opacity: 0.9;
+    /* Screen-reader announcements */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header class="site-header">
     <div class="container nav">
-      <div class="brand"><span class="dot"></span> Amber &amp; Thyme</div>
-      <nav>
+      <div class="brand"><span class="dot" aria-hidden="true"></span> Amber &amp; Thyme</div>
+      <nav aria-label="Primary">
         <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
         <div id="nav-links" class="nav-links">
           <a href="index.html">Home</a>
@@ -227,6 +108,7 @@
     </div>
   </header>
 
+  <!-- Intro -->
   <section class="alt">
     <div class="container">
       <h1 class="section-title">Our Menu</h1>
@@ -234,6 +116,7 @@
     </div>
   </section>
 
+  <!-- Menu -->
   <section>
     <div class="container">
       <div class="menu-section">
@@ -244,28 +127,28 @@
             <div class="menu-item-title">Tomato Soup</div>
             <div class="menu-item-price">€6</div>
             <p class="menu-item-desc">Roasted tomatoes, basil oil, grilled sourdough.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="starter-tomato-soup" data-name="Tomato Soup" data-price="6">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="starter-tomato-soup" data-name="Tomato Soup">Add to Cart</button></div>
           </div>
           <div class="menu-item">
             <div class="menu-thumb" aria-hidden="true">🥗</div>
             <div class="menu-item-title">Green Salad</div>
             <div class="menu-item-price">€7</div>
             <p class="menu-item-desc">Crisp greens, shaved vegetables, lemon vinaigrette.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="starter-green-salad" data-name="Green Salad" data-price="7">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="starter-green-salad" data-name="Green Salad">Add to Cart</button></div>
           </div>
           <div class="menu-item">
             <div class="menu-thumb" aria-hidden="true">🍞</div>
             <div class="menu-item-title">Garlic Bread</div>
             <div class="menu-item-price">€5</div>
             <p class="menu-item-desc">Warm sourdough, garlic butter, herbs.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="starter-garlic-bread" data-name="Garlic Bread" data-price="5">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="starter-garlic-bread" data-name="Garlic Bread">Add to Cart</button></div>
           </div>
           <div class="menu-item">
             <div class="menu-thumb" aria-hidden="true">🧀</div>
             <div class="menu-item-title">Burrata</div>
             <div class="menu-item-price">€9</div>
             <p class="menu-item-desc">Creamy burrata, cherry tomatoes, basil pesto.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="starter-burrata" data-name="Burrata" data-price="9">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="starter-burrata" data-name="Burrata">Add to Cart</button></div>
           </div>
         </div>
       </div>
@@ -278,28 +161,28 @@
             <div class="menu-item-title">Roast Chicken</div>
             <div class="menu-item-price">€16</div>
             <p class="menu-item-desc">Herb butter, pan jus, roasted potatoes.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="main-roast-chicken" data-name="Roast Chicken" data-price="16">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="main-roast-chicken" data-name="Roast Chicken">Add to Cart</button></div>
           </div>
           <div class="menu-item">
             <div class="menu-thumb" aria-hidden="true">🐟</div>
             <div class="menu-item-title">Grilled Salmon</div>
             <div class="menu-item-price">€18</div>
             <p class="menu-item-desc">Charred lemon, dill yogurt, seasonal vegetables.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="main-grilled-salmon" data-name="Grilled Salmon" data-price="18">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="main-grilled-salmon" data-name="Grilled Salmon">Add to Cart</button></div>
           </div>
           <div class="menu-item">
             <div class="menu-thumb" aria-hidden="true">🍄</div>
             <div class="menu-item-title">Mushroom Risotto</div>
             <div class="menu-item-price">€15</div>
             <p class="menu-item-desc">Wild mushrooms, parmesan, thyme, truffle oil.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="main-mushroom-risotto" data-name="Mushroom Risotto" data-price="15">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="main-mushroom-risotto" data-name="Mushroom Risotto">Add to Cart</button></div>
           </div>
           <div class="menu-item">
             <div class="menu-thumb" aria-hidden="true">🥩</div>
             <div class="menu-item-title">Steak Frites</div>
             <div class="menu-item-price">€22</div>
             <p class="menu-item-desc">Grilled sirloin, herb butter, crispy fries.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="main-steak-frites" data-name="Steak Frites" data-price="22">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="main-steak-frites" data-name="Steak Frites">Add to Cart</button></div>
           </div>
         </div>
       </div>
@@ -312,28 +195,28 @@
             <div class="menu-item-title">Chocolate Tart</div>
             <div class="menu-item-price">€7</div>
             <p class="menu-item-desc">Dark chocolate ganache, sea salt, vanilla cream.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="dessert-chocolate-tart" data-name="Chocolate Tart" data-price="7">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="dessert-chocolate-tart" data-name="Chocolate Tart">Add to Cart</button></div>
           </div>
           <div class="menu-item">
             <div class="menu-thumb" aria-hidden="true">🍋</div>
             <div class="menu-item-title">Lemon Posset</div>
             <div class="menu-item-price">€6</div>
             <p class="menu-item-desc">Silky lemon cream, almond crumble.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="dessert-lemon-posset" data-name="Lemon Posset" data-price="6">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="dessert-lemon-posset" data-name="Lemon Posset">Add to Cart</button></div>
           </div>
           <div class="menu-item">
             <div class="menu-thumb" aria-hidden="true">🍮</div>
             <div class="menu-item-title">Panna Cotta</div>
             <div class="menu-item-price">€6.5</div>
             <p class="menu-item-desc">Vanilla panna cotta, berry compote.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="dessert-panna-cotta" data-name="Panna Cotta" data-price="6.5">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="dessert-panna-cotta" data-name="Panna Cotta">Add to Cart</button></div>
           </div>
           <div class="menu-item">
             <div class="menu-thumb" aria-hidden="true">🍎</div>
             <div class="menu-item-title">Apple Crumble</div>
             <div class="menu-item-price">€6.5</div>
             <p class="menu-item-desc">Warm apples, oat crumble, cinnamon custard.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="dessert-apple-crumble" data-name="Apple Crumble" data-price="6.5">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="dessert-apple-crumble" data-name="Apple Crumble">Add to Cart</button></div>
           </div>
         </div>
       </div>
@@ -346,132 +229,102 @@
             <div class="menu-item-title">House Lemonade</div>
             <div class="menu-item-price">€3.5</div>
             <p class="menu-item-desc">Fresh lemon, mint, sparkling water.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="drink-lemonade" data-name="House Lemonade" data-price="3.5">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="drink-lemonade" data-name="House Lemonade">Add to Cart</button></div>
           </div>
           <div class="menu-item">
             <div class="menu-thumb" aria-hidden="true">☕</div>
             <div class="menu-item-title">Filter Coffee</div>
             <div class="menu-item-price">€3</div>
             <p class="menu-item-desc">Locally roasted beans.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="drink-coffee" data-name="Filter Coffee" data-price="3">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="drink-coffee" data-name="Filter Coffee">Add to Cart</button></div>
           </div>
           <div class="menu-item">
             <div class="menu-thumb" aria-hidden="true">🧋</div>
             <div class="menu-item-title">Iced Tea</div>
             <div class="menu-item-price">€3.5</div>
             <p class="menu-item-desc">Brewed black tea, lemon, light sweetness.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="drink-iced-tea" data-name="Iced Tea" data-price="3.5">Add to Cart</button></div>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="drink-iced-tea" data-name="Iced Tea">Add to Cart</button></div>
           </div>
           <div class="menu-item">
             <div class="menu-thumb" aria-hidden="true">🍷</div>
             <div class="menu-item-title">House Red Wine</div>
             <div class="menu-item-price">€6 / glass</div>
-            <p class="menu-item-desc">Smooth, medium‑bodied, berry notes.</p>
-            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="drink-red-wine" data-name="House Red Wine" data-price="6">Add to Cart</button></div>
+            <p class="menu-item-desc">Smooth, medium-bodied, berry notes.</p>
+            <div class="menu-item-actions"><button class="btn add-to-cart" data-id="drink-red-wine" data-name="House Red Wine">Add to Cart</button></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
         <div class="footer-heading">Hours</div>
-        <div class="muted">Mon–Thu 11–21<br/>Fri–Sat 11–23<br/>Sun 12–20</div>
+        <div class="muted">Mon–Thu 11–21<br>Fri–Sat 11–23<br>Sun 12–20</div>
       </div>
       <div>
         <div class="footer-heading">Find Us</div>
-        <div class="muted">123 Market Street<br/>Helsinki, Finland</div>
+        <div class="muted">123 Market Street<br>Helsinki, Finland</div>
       </div>
       <div>
         <div class="footer-heading">Follow</div>
         <div class="social">
-          <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="images/instagram.svg" alt="" /></a>
-          <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><img src="images/facebook.svg" alt="" /></a>
-          <a href="https://twitter.com" aria-label="X" target="_blank" rel="noopener noreferrer"><img src="images/x.svg" alt="" /></a>
+          <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="images/instagram.svg" alt=""></a>
+          <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><img src="images/facebook.svg" alt=""></a>
+          <a href="https://twitter.com" aria-label="X" target="_blank" rel="noopener noreferrer"><img src="images/x.svg" alt=""></a>
         </div>
       </div>
     </div>
-    <div class="copyright">© <span id="year"></span> Amber &amp; Thyme</div>
+    <div class="copyright">© 2025 Amber &amp; Thyme</div>
   </footer>
 
-  <!-- Cart UI -->
-  <button class="cart-toggle" id="cart-toggle" aria-label="Open cart">🛒 <span class="badge" id="cart-count">0</span></button>
-  <div class="cart-overlay" id="cart-overlay"></div>
-  <aside class="cart-sidebar" id="cart-sidebar" aria-label="Shopping cart">
-    <div class="cart-header">Your Order</div>
-    <div class="cart-items" id="cart-items"></div>
-    <div class="cart-footer">
-      <div class="cart-row"><span>Subtotal</span><strong id="cart-subtotal">€0.00</strong></div>
-      <button class="checkout-btn" id="checkout-btn">Checkout</button>
-    </div>
-  </aside>
+  <!-- Minimal count badge (no checkout UI) -->
+  <button class="cart-toggle" aria-hidden="true">
+    🛒 <span class="badge" id="cart-count">0</span>
+  </button>
+  <div id="sr-announce" class="sr-only" aria-live="polite"></div>
 
-  <!-- Checkout Modal -->
-  <div class="modal-backdrop" id="modal-backdrop"></div>
-  <section class="modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
-    <header>
-      <div id="checkout-title">Checkout</div>
-      <button class="close-btn" id="modal-close" aria-label="Close">Close</button>
-    </header>
-    <div class="modal-body">
-      <form id="checkout-form" class="grid" style="gap:0.5rem;">
-        <div class="field">
-          <label for="cust-name">Name</label>
-          <input id="cust-name" type="text" required />
-        </div>
-        <div class="field">
-          <label for="cust-address">Delivery Address</label>
-          <input id="cust-address" type="text" required />
-        </div>
-        <div class="field">
-          <label for="cust-phone">Phone Number</label>
-          <input id="cust-phone" type="text" required />
-        </div>
-        <div class="field">
-          <label for="cust-email">Email</label>
-          <input id="cust-email" type="email" required />
-        </div>
-        <div class="field">
-          <label>Payment</label>
-          <div style="text-align: center; margin: 20px 0;">
-            <button id="pay-button" style="background: #16a34a; color: white; border: none; border-radius: 0.5rem; padding: 0.8rem 2rem; cursor: pointer; font-weight: 600; font-size: 16px;">Pay Now</button>
-          </div>
-        </div>
-        <div class="field">
-          <label>Next steps</label>
-          <div id="pay-details" class="pay-details">
-            <div id="pay-help"></div>
-            <div id="card-fields" style="display:none;" class="grid" style="gap:0.5rem;">
-              <div class="field">
-                <label for="card-number">Card Number</label>
-                <input id="card-number" type="text" placeholder="1234 5678 9012 3456" />
-              </div>
-              <div class="grid-2">
-                <div class="field">
-                  <label for="card-exp">Expiry</label>
-                  <input id="card-exp" type="text" placeholder="MM/YY" />
-                </div>
-                <div class="field">
-                  <label for="card-cvc">CVC</label>
-                  <input id="card-cvc" type="text" placeholder="123" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-      <div id="order-message" class="muted" style="display:none;">Thank you for your order!</div>
-    </div>
-    <footer>
-      <!-- Buttons moved to form above -->
-    </footer>
-  </section>
+  <!-- Tiny, safe JS: counts selections and updates the badge (persists in localStorage). No checkout. -->
+  <script>
+    (function () {
+      'use strict';
+      var KEY = 'amberthyme_menu_counts';
+      var badge = document.getElementById('cart-count');
+      var announcer = document.getElementById('sr-announce');
 
-  <script defer src="restaurant.js"></script>
-  <script defer src="order.js"></script>
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || {}; }
+        catch(e) { return {}; }
+      }
+      function save(obj) { localStorage.setItem(KEY, JSON.stringify(obj)); }
+      function total(obj) {
+        var sum = 0; for (var k in obj) if (Object.prototype.hasOwnProperty.call(obj,k)) sum += obj[k] | 0; return sum;
+      }
+      function render() {
+        var t = total(load());
+        if (badge) badge.textContent = t;
+      }
+
+      // Delegate clicks so it works for all current/future .add-to-cart buttons
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest && e.target.closest('.add-to-cart');
+        if (!btn) return;
+
+        var id = btn.getAttribute('data-id') || 'item';
+        var name = btn.getAttribute('data-name') || 'Item';
+        var counts = load();
+        counts[id] = (counts[id] || 0) + 1;
+        save(counts);
+        render();
+
+        // Accessible announcement
+        if (announcer) announcer.textContent = name + ' added. Total items: ' + total(counts) + '.';
+      });
+
+      render(); // initial
+    })();
+  </script>
 </body>
 </html>
-
-
