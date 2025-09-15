@@ -5,129 +5,95 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Welcome to Amber & Thyme – a cozy neighborhood restaurant." />
   <title>Amber & Thyme — Neighborhood Kitchen</title>
-   <style>
-    /* General */
+
+  <style>
+    /* ---------- Base ---------- */
+    :root { --ink:#333; --paper:#fafafa; --brand:#2c3e50; --muted:#555; --gold:#d4af37; }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
-      background-color: #fafafa;
-      color: #333;
+      background: var(--paper);
+      color: var(--ink);
     }
+    a { color: inherit; text-decoration: none; }
+    a:hover, a:focus { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    img { max-width: 100%; height: auto; display: block; }
 
-    /* Header */
-    .site-header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 1rem 0;
-    }
-    .site-header .brand {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      margin-left: 1rem;
-    }
-    .nav-links a[aria-current="page"] {
-      text-decoration: underline;
-    }
+    /* ---------- Layout helpers ---------- */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+    .grid { display: grid; gap: 1rem; }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
 
-    /* Hero Section */
+    /* ---------- Header / Nav ---------- */
+    .site-header { background: var(--brand); color: #fff; padding: 1rem 0; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand { font-size: 1.5rem; font-weight: bold; display: flex; align-items: center; gap: .5rem; }
+    .dot { width: .8rem; height: .8rem; border-radius: 50%; background: var(--gold); display: inline-block; }
+    .nav-links { display: flex; gap: 1rem; align-items: center; }
+    .nav-links a { color: #fff; }
+    .nav-links a[aria-current="page"] { text-decoration: underline; font-weight: 600; }
+    .nav-toggle { display: none; } /* Hidden since there's no JS to toggle */
+
+    /* ---------- Hero ---------- */
     .hero {
-      color: white;
+      color: #fff;
       text-align: center;
       padding: 8rem 1rem;
       background-size: cover;
       background-position: center;
       position: relative;
+      isolation: isolate;
     }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35));
+      z-index: 0;
     }
-    .hero p {
-      font-size: 1.25rem;
-    }
+    .hero .hero-inner { position: relative; z-index: 1; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0 0 .75rem 0; }
+    .hero p { font-size: clamp(1rem, 2.5vw, 1.25rem); margin: 0; }
 
-    /* Sections */
-    section.alt {
-      background-color: #f5f5f5;
-      padding: 2rem 0;
-    }
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .lead {
-      font-size: 1.2rem;
-    }
+    /* ---------- Sections ---------- */
+    section { padding: 2rem 0; }
+    section.alt { background: #f5f5f5; }
+    .section-title { font-size: 2rem; margin: 0 0 1rem 0; }
+    .lead { font-size: 1.125rem; color: var(--muted); }
 
-    /* Cards */
-    .grid {
-      display: grid;
-      gap: 1rem;
-    }
-    .grid-3 {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
+    /* ---------- Cards ---------- */
     .card {
-      background: white;
-      border-radius: 0.5rem;
+      background: #fff;
+      border-radius: .5rem;
       overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,.08);
     }
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .card-body {
-      padding: 1rem;
-    }
-    .card-title {
-      margin: 0 0 0.5rem 0;
-      font-size: 1.25rem;
-    }
-    .card-text {
-      margin: 0;
-      font-size: 1rem;
-      color: #555;
-    }
+    .card img { width: 100%; height: 180px; object-fit: cover; }
+    .card-body { padding: 1rem; }
+    .card-title { margin: 0 0 .5rem 0; font-size: 1.25rem; }
+    .card-text { margin: 0; color: var(--muted); }
 
-    /* Footer */
-    .site-footer {
-      background-color: #2c3e50;
-      color: white;
-      padding: 2rem 0;
-    }
-    .site-footer .footer-heading {
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-    .site-footer .muted {
-      color: #ccc;
-    }
-    .site-footer .social img {
-      width: 24px;
-      margin-right: 0.5rem;
-    }
-    .site-footer .copyright {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #ccc;
-    }
+    /* ---------- Footer ---------- */
+    .site-footer { background: var(--brand); color: #fff; padding: 2rem 0; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+    .footer-heading { font-weight: bold; margin-bottom: .5rem; }
+    .muted { color: #ddd; }
+    .social a { display: inline-block; margin-right: .5rem; }
+    .social img { width: 24px; height: 24px; }
+    .copyright { text-align: center; margin-top: 1rem; font-size: .9rem; color: #ddd; }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header class="site-header">
     <div class="container nav">
-      <div class="brand"><span class="dot"></span> Amber &amp; Thyme</div>
-      <nav>
-        <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-        <div id="nav-links" class="nav-links">
+      <div class="brand"><span class="dot" aria-hidden="true"></span> Amber &amp; Thyme</div>
+      <nav aria-label="Primary">
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        <div class="nav-links" id="nav-links">
           <a href="index.html" aria-current="page">Home</a>
           <a href="menu.html">Menu</a>
           <a href="contact.html">Contact Us</a>
@@ -136,44 +102,48 @@
     </div>
   </header>
 
-  <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2070&auto=format&fit=crop');">
+  <!-- Hero -->
+  <section class="hero" style="background-image:url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2070&auto=format&fit=crop');">
     <div class="container hero-inner">
       <h1>Comfort food, thoughtfully made</h1>
-      <p>Seasonal ingredients, wood‑fired flavors, and warm hospitality.</p>
+      <p>Seasonal ingredients, wood-fired flavors, and warm hospitality.</p>
     </div>
   </section>
 
+  <!-- About -->
   <section>
-    <div class="container grid" style="gap:1.5rem;">
-      <div>
-        <h2 class="section-title">About Us</h2>
-        <p class="lead">Amber &amp; Thyme is a cozy neighborhood spot celebrating fresh, local ingredients and simple cooking done well. Join us for lunch, dinner, or weekend brunch.</p>
-      </div>
+    <div class="container">
+      <h2 class="section-title">About Us</h2>
+      <p class="lead">Amber &amp; Thyme is a cozy neighborhood spot celebrating fresh, local ingredients and simple cooking done well. Join us for lunch, dinner, or weekend brunch.</p>
     </div>
   </section>
 
+  <!-- Featured -->
   <section class="alt">
     <div class="container">
       <h2 class="section-title">Featured Dishes</h2>
       <div class="grid grid-3">
         <article class="card">
-          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1400&auto=format&fit=crop" alt="Wood‑fired pizza" />
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1400&auto=format&fit=crop" alt="Wood-fired pizza" loading="lazy" />
           <div class="card-body">
-            <h3 class="card-title">Wood‑Fired Margherita</h3>
+            <h3 class="card-title">Wood-Fired Margherita</h3>
             <p class="card-text">San Marzano tomatoes, fresh mozzarella, garden basil.</p>
           </div>
         </article>
+
+        <!-- If these local images don't exist, swap their src with valid URLs -->
         <article class="card">
-          <img src="images/salad.jpg" alt="Seasonal salad" />
+          <img src="images/salad.jpg" alt="Seasonal salad with crisp greens" loading="lazy" />
           <div class="card-body">
             <h3 class="card-title">Market Greens</h3>
             <p class="card-text">Crisp lettuces, shaved vegetables, citrus vinaigrette.</p>
           </div>
         </article>
+
         <article class="card">
-          <img src="images/salmon.jpg" alt="Grilled salmon" />
+          <img src="images/salmon.jpg" alt="Grilled salmon with lemon and herbs" loading="lazy" />
           <div class="card-body">
-            <h3 class="card-title">Cedar‑Plank Salmon</h3>
+            <h3 class="card-title">Cedar-Plank Salmon</h3>
             <p class="card-text">Charred lemon, herb butter, roasted potatoes.</p>
           </div>
         </article>
@@ -181,28 +151,34 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
         <div class="footer-heading">Hours</div>
-        <div class="muted">Mon–Thu 11–21<br/>Fri–Sat 11–23<br/>Sun 12–20</div>
+        <div class="muted">Mon–Thu 11–21<br>Fri–Sat 11–23<br>Sun 12–20</div>
       </div>
       <div>
         <div class="footer-heading">Find Us</div>
-        <div class="muted">123 Market Street<br/>Helsinki, Finland</div>
+        <div class="muted">123 Market Street<br>Helsinki, Finland</div>
       </div>
       <div>
         <div class="footer-heading">Follow</div>
         <div class="social">
-          <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="images/instagram.svg" alt="" /></a>
-          <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><img src="images/facebook.svg" alt="" /></a>
-          <a href="https://twitter.com" aria-label="X" target="_blank" rel="noopener noreferrer"><img src="images/x.svg" alt="" /></a>
+          <!-- Replace these with text links if the icons don't exist -->
+          <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <img src="images/instagram.svg" alt="" />
+          </a>
+          <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <img src="images/facebook.svg" alt="" />
+          </a>
+          <a href="https://twitter.com" aria-label="X" target="_blank" rel="noopener noreferrer">
+            <img src="images/x.svg" alt="" />
+          </a>
         </div>
       </div>
     </div>
-    <div class="copyright">© <span id="year"></span> Amber &amp; Thyme</div>
+    <div class="copyright">© 2025 Amber &amp; Thyme</div>
   </footer>
-
-  <script defer src="restaurant.js"></script>
 </body>
 </html>
