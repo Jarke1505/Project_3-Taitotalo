@@ -5,6 +5,114 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact — Amber & Thyme</title>
   <link rel="stylesheet" href="restaurant.css" />
+  <style>
+    /* General */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #fafafa;
+  color: #333;
+}
+
+/* Header */
+.site-header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem 0;
+}
+.site-header .brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+.nav-links a[aria-current="page"] {
+  text-decoration: underline;
+}
+
+/* Sections */
+section.alt {
+  background-color: #f5f5f5;
+  padding: 2rem 0;
+}
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.lead {
+  font-size: 1.2rem;
+}
+
+/* Form */
+#contact-form .field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+#contact-form label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+#contact-form input,
+#contact-form textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+#contact-form textarea {
+  resize: vertical;
+}
+#contact-form .btn {
+  background-color: #2c3e50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#contact-form .btn:hover {
+  background-color: #1a252f;
+}
+
+/* Footer */
+.site-footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 2rem 0;
+}
+.site-footer .footer-heading {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.site-footer .muted {
+  color: #ccc;
+}
+.site-footer .social img {
+  width: 24px;
+  margin-right: 0.5rem;
+}
+.site-footer .copyright {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+  </style>
 </head>
 <body>
   <header class="site-header">
